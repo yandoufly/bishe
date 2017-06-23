@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Orders" table="orders">
+		<id name="ordersid" type="java.lang.String">
+			<column name="ordersid" length="255" />
+			<!-- 主键的生成机制是UUID -->
+			<generator class="uuid.hex"></generator>
+		</id>
+		<!-- 生成表定义的映射 -->
+		<property name="ordercode" type="java.lang.String">
+			<column name="ordercode" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="buyerid" type="java.lang.String">
+			<column name="buyerid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="sellerid" type="java.lang.String">
+			<column name="sellerid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="goodsid" type="java.lang.String">
+			<column name="goodsid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="num" type="java.lang.String">
+			<column name="num" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="price" type="java.lang.String">
+			<column name="price" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="total" type="java.lang.String">
+			<column name="total" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="status" type="java.lang.String">
+			<column name="status" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="addtime" type="java.lang.String">
+			<column name="addtime" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="receiver" type="java.lang.String">
+			<column name="receiver" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="address" type="java.lang.String">
+			<column name="address" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="contact" type="java.lang.String">
+			<column name="contact" />
+		</property>
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="goods" column="goodsid" class="com.entity.Goods"
+			fetch="join" insert="false" update="false" lazy="false" />
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="seller" column="sellerid" class="com.entity.Users"
+			fetch="join" insert="false" update="false" lazy="false" />
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="buyer" column="buyerid" class="com.entity.Users"
+			fetch="join" insert="false" update="false" lazy="false" />
+	</class>
+</hibernate-mapping>

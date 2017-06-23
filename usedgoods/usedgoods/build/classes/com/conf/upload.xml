@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="upload" namespace="/upload" extends="default">
+		<action name="image1" class="uploadAction" method="image1">
+			<result name="success">/saveimage1.jsp</result>
+		</action>
+		<action name="image2" class="uploadAction" method="image2">
+			<result name="success">/saveimage2.jsp</result>
+		</action>
+		<action name="image3" class="uploadAction" method="image3">
+			<result name="success">/saveimage3.jsp</result>
+		</action>
+		<action name="image4" class="uploadAction" method="image4">
+			<result name="success">/saveimage4.jsp</result>
+		</action>
+		
+
+	</package>
+</struts>

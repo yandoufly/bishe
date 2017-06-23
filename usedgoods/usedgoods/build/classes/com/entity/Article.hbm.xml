@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping><class name="com.entity.Article" table="article" ><id name="articleid" type="java.lang.String">
+<column name="articleid" length="255" />
+<!-- 主键的生成机制是UUID -->
+<generator class="uuid.hex"></generator>
+</id>
+<!-- 生成表定义的映射 -->
+ <property name="title" type="java.lang.String">
+<column name="title" />
+</property>
+<!-- 生成表定义的映射 -->
+ <property name="contents" type="java.lang.String">
+<column name="contents" />
+</property>
+<!-- 生成表定义的映射 -->
+ <property name="addtime" type="java.lang.String">
+<column name="addtime" />
+</property>
+<!-- 生成表定义的映射 -->
+ <property name="hits" type="java.lang.String">
+<column name="hits" />
+</property>
+</class></hibernate-mapping>

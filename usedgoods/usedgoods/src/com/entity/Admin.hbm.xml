@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Admin" table="admin">
+		<id name="adminid" type="java.lang.String">
+			<column name="adminid" length="255" />
+			<!-- 主键的生成机制是UUID -->
+			<generator class="uuid.hex"></generator>
+		</id>
+		<!-- 生成表定义的映射 -->
+		<property name="username" type="java.lang.String">
+			<column name="username" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="password" type="java.lang.String">
+			<column name="password" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="realname" type="java.lang.String">
+			<column name="realname" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="contact" type="java.lang.String">
+			<column name="contact" />
+		</property>
+	</class>
+</hibernate-mapping>

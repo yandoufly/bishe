@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Rebbs" table="rebbs">
+		<id name="rebbsid" type="java.lang.String">
+			<column name="rebbsid" length="255" />
+			<!-- 主键的生成机制是UUID -->
+			<generator class="uuid.hex"></generator>
+		</id>
+		<!-- 生成表定义的映射 -->
+		<property name="usersid" type="java.lang.String">
+			<column name="usersid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="bbsid" type="java.lang.String">
+			<column name="bbsid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="contents" type="java.lang.String">
+			<column name="contents" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="addtime" type="java.lang.String">
+			<column name="addtime" />
+		</property>
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="users" column="usersid" class="com.entity.Users"
+			fetch="join" insert="false" update="false" lazy="false" />
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="bbs" column="bbsid" class="com.entity.Bbs"
+			fetch="join" insert="false" update="false" lazy="false" />
+	</class>
+</hibernate-mapping>

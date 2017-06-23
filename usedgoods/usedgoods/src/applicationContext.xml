@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 配置Spring数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 配置数据库的驱动 -->
+		<property name="driverClassName" value="org.gjt.mm.mysql.Driver" />
+		<!-- 配置数据库连接地址 -->
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/usegoods?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<!-- 数据库用户名 -->
+		<property name="username" value="root" />
+		<!-- 数据库密码 -->
+		<property name="password" value="123456" />
+	</bean>
+
+	<!-- 配置SpringSessionFactory以及数据源 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+			</props>
+		</property>
+		<!-- 配置String和Hibernate整合 Hibernate映射文件的加载 -->
+		<property name="mappingResources">
+			<list>
+				<value>com/entity/Admin.hbm.xml</value>
+				<value>com/entity/Users.hbm.xml</value>
+				<value>com/entity/Article.hbm.xml</value>
+				<value>com/entity/Cate.hbm.xml</value>
+				<value>com/entity/Goods.hbm.xml</value>
+				<value>com/entity/Cart.hbm.xml</value>
+				<value>com/entity/Orders.hbm.xml</value>
+				<value>com/entity/Topic.hbm.xml</value>
+				<value>com/entity/Bbs.hbm.xml</value>
+				<value>com/entity/Rebbs.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 引入外部sprign配置文件 -->
+    <import resource="classpath:application-action.xml"/>
+    <import resource="classpath:application-dao.xml"/>
+</beans>

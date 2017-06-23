@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Cart" table="cart">
+		<id name="cartid" type="java.lang.String">
+			<column name="cartid" length="255" />
+			<!-- 主键的生成机制是UUID -->
+			<generator class="uuid.hex"></generator>
+		</id>
+		<!-- 生成表定义的映射 -->
+		<property name="usersid" type="java.lang.String">
+			<column name="usersid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="goodsid" type="java.lang.String">
+			<column name="goodsid" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="num" type="java.lang.String">
+			<column name="num" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="price" type="java.lang.String">
+			<column name="price" />
+		</property>
+		<!-- 生成表定义的映射 -->
+		<property name="addtime" type="java.lang.String">
+			<column name="addtime" />
+		</property>
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="users" column="usersid" class="com.entity.Users"
+			fetch="join" insert="false" update="false" lazy="false" />
+		<!-- 生成多表之间的主外键映射关系 -->
+		<many-to-one name="goods" column="goodsid" class="com.entity.Goods"
+			fetch="join" insert="false" update="false" lazy="false" />
+	</class>
+</hibernate-mapping>
