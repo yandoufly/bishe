@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wjw.laboratory.entity.User" table="user">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="account" column="account"/>
+        <property name="password" column="password"/>
+        <property name="name" column="name"/>
+        <property name="idnumber" column="idnumber"/>
+        <property name="sex" column="sex"/>
+        <property name="profession" column="profession"/>
+        <property name="specialty" column="specialty"/>
+        <property name="birthday" column="birthday"/>
+        <property name="cellphone1" column="cellphone1"/>
+        <property name="cellphone2" column="cellphone2"/>
+        <property name="qq" column="qq"/>
+        <property name="email" column="email"/>
+        <property name="address" column="address"/>
+        <property name="role" column="role"/>
+	</class>
+</hibernate-mapping>
+	

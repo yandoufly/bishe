@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wjw.laboratory.entity.QuestionReply" table="questionreply">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="questionId" column="questionId"/>
+        <property name="replyContent" column="replyContent"/>
+        <property name="replyId" column="replyId"/>
+        <property name="replyName" column="replyName"/>
+        <property name="replyTime" column="replyTime"/>
+	</class>
+</hibernate-mapping>
+	

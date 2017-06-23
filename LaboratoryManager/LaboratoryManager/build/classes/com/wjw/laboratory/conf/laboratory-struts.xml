@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="login-action" namespace="/" extends="struts-default">
+		<action name="login" class="com.wjw.laboratory.action.LoginAction" method="login">
+			<result name="student">/student/welcome.jsp</result>
+			<result name="teacher">/teacher/welcome.jsp</result>
+			<result name="manager">/admin/welcome.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+	</package>
+
+	<package name="admin-action" namespace="/admin" extends="struts-default">
+		<action name="user_*" class="com.wjw.laboratory.action.UserAction" method="{1}">
+			<result name="{1}">/admin/user/{1}.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="actionName">user_listUI</param>
+				<param name="encode">true</param>
+			</result>
+		</action>
+
+		<action name="classroom_*" class="com.wjw.laboratory.action.ClassroomAction" method="{1}">
+			<result name="{1}">/admin/classroom/{1}.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="actionName">classroom_listUI</param>
+				<param name="encode">true</param>
+			</result>
+		</action>
+
+		<action name="appointment_*" class="com.wjw.laboratory.action.AppointmentAction" method="{1}">
+			<result name="{1}">/admin/appointment/{1}.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="actionName">appointment_listUI</param>
+				<param name="encode">true</param>
+			</result>
+			<result type="stream" name="ajax-activated">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		</action>
+		
+		<action name="appointmentExportExcel" class="com.wjw.laboratory.action.AppointmentAction" method="exportExcel"></action>
+	</package>
+	
+	<package name="teacher-action" namespace="/teacher" extends="struts-default">
+		<!-- 课程管理 -->
+		<action name="course_*" class="com.wjw.laboratory.action.CourseAction" method="{1}">
+			<result name="error">/common/error.jsp</result>
+			<result name="{1}">/teacher/course/{1}.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="actionName">course_listUI</param>
+				<param name="encode">true</param>
+			</result>
+			<result name="namelistUI">/teacher/course/namelistUI.jsp</result>
+			<result name="coursedetailUI">/teacher/course/coursedetailUI.jsp</result>
+			<result name="addCoursedetail">/teacher/course/addCoursedetail.jsp</result>
+		</action>
+
+		<!-- 预约实验室:准备数据，跳转到页面 -->
+		<action name="takeAppointmentPage" class="com.wjw.laboratory.action.AppointmentAction" method="takeAppointmentPage">
+			<result name="takeAppointmentPage">/teacher/takeAppointment.jsp</result>
+		</action>
+		<!-- 预约实验室:查询实验室占用情况 -->
+		<action name="getAllAppointment" class="com.wjw.laboratory.action.AppointmentAction" method="getAllAppointment">
+		</action>
+		<!-- 预约实验室  -->
+		<action name="takeAppointment" class="com.wjw.laboratory.action.AppointmentAction" method="takeAppointment">
+			<result name="mainFrame">/teacher/welcome.jsp</result>
+		</action>
+		
+		<!-- 文件下载 -->
+		<action name="courseFileDown" class="com.wjw.laboratory.action.CourseAction" method="downloadFile">
+			<result name="download" type="stream">
+			   <param name="contentType">application/octet-stream</param>
+			   <param name="inputName">downloadFile</param>
+			   <param name="contentDisposition">attachment;fileName=${downFileName}</param>
+			   <param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="lookCoursedetail" class="com.wjw.laboratory.action.CourseAction" method="lookCoursedetail">
+			<result name="showCoursedetail">/teacher/course/showCoursedetail.jsp</result>
+		</action>
+		<!-- 导出名单 -->
+		<action name="exportExcelBycourseId" class="com.wjw.laboratory.action.CourseAction" method="exportExcelBycourseId">
+		</action>
+		<!-- 录入成绩 -->
+		<action name="importExcel" class="com.wjw.laboratory.action.CourseAction" method="importExcel">
+			<result name="mainFrame">/teacher/welcome.jsp</result>
+		</action>
+
+		<action name="questionList" class="com.wjw.laboratory.action.QuestionAction" method="questionList">
+			<result name="questionList">/teacher/questionList.jsp</result>
+		</action>
+		<action name="showQuestion" class="com.wjw.laboratory.action.QuestionAction" method="showQuestion">
+			<result name="showQuestion">/teacher/showQuestion.jsp</result>
+		</action>
+		<action name="addQuestionReply" class="com.wjw.laboratory.action.QuestionAction" method="addQuestionReply">
+			<result name="showQuestion">/teacher/showQuestion.jsp</result>
+		</action>
+		
+		<action name="deleteCoursedetail" class="com.wjw.laboratory.action.CourseAction" method="deleteCoursedetail">
+			<result name="coursedetailUI">/teacher/course/coursedetailUI.jsp</result>
+		</action>
+		<!-- 查看评教 -->
+		<action name="findEvaluation" class="com.wjw.laboratory.action.EvaluationAction" method="findEvaluation"></action>
+	</package>
+	
+	<!-- 学生部分 -->
+	<package name="student-action" namespace="/student" extends="struts-default">
+		<action name="courseChoosePage" class="com.wjw.laboratory.action.CourseAction" method="courseChoosePage">
+			<result name="courseChoose">/student/courseChoose.jsp</result>
+		</action>
+		<action name="courseChoose" class="com.wjw.laboratory.action.CourseAction" method="courseChoose">
+			<result name="courseChoose">/student/courseChoose.jsp</result>
+		</action>
+		<action name="courseHasPage" class="com.wjw.laboratory.action.CourseAction" method="courseHasPage">
+			<result name="courseHas">/student/courseHas.jsp</result>
+		</action>
+		<action name="lookCoursedetailList" class="com.wjw.laboratory.action.CourseAction" method="lookCoursedetailList">
+			<result name="coursedetailUI">/student/coursedetailUI.jsp</result>
+		</action>
+		<action name="lookCoursedetail" class="com.wjw.laboratory.action.CourseAction" method="lookCoursedetail">
+			<result name="showCoursedetail">/student/showCoursedetail.jsp</result>
+		</action>
+		
+		<!-- 文件下载 -->
+		<action name="courseFileDown" class="com.wjw.laboratory.action.CourseAction" method="downloadFile">
+			<result name="download" type="stream">
+			   <param name="contentType">application/octet-stream</param>
+			   <param name="inputName">downloadFile</param>
+			   <param name="contentDisposition">attachment;fileName=${downFileName}</param>
+			   <param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="addQuestion" class="com.wjw.laboratory.action.QuestionAction" method="addQuestion">
+			<result name="list" type="redirectAction">
+				<param name="actionName">questionList</param>
+				<param name="encode">true</param>
+			</result>
+		</action>
+		<action name="questionList" class="com.wjw.laboratory.action.QuestionAction" method="questionList">
+			<result name="questionList">/student/questionList.jsp</result>
+		</action>
+		<action name="showQuestion" class="com.wjw.laboratory.action.QuestionAction" method="showQuestion">
+			<result name="showQuestion">/student/showQuestion.jsp</result>
+		</action>
+		<action name="addQuestionReply" class="com.wjw.laboratory.action.QuestionAction" method="addQuestionReply">
+			<result name="showQuestion">/student/showQuestion.jsp</result>
+		</action>
+		
+		<!-- 课程评教 -->
+		<action name="teachEvaluat" class="com.wjw.laboratory.action.CourseAction" method="courseHasPage">
+			<result name="courseHas">/student/teachingEvaluation.jsp</result>
+		</action>
+		<action name="addEvaluation" class="com.wjw.laboratory.action.EvaluationAction" method="addEvaluation">
+			<result name="courseHas">/student/teachingEvaluation.jsp</result>
+		</action>
+		
+		<!-- 成绩查询 -->
+		<action name="scoreQuery" class="com.wjw.laboratory.action.CourseAction" method="scoreQuery">
+			<result name="mysoreQuery">/student/mysoreQuery.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>

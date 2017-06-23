@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wjw.laboratory.entity.Coursedetail" table="coursedetail">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <property name="courseId" column="courseId"/>
+        <property name="courseName" column="courseName"/>
+        <property name="title" column="title"/>
+        <property name="content" column="content"/>
+        <property name="experimentTime" column="experimentTime"/>
+        <property name="filename" column="filename"/>
+        <property name="filepath" column="filepath"/>
+	</class>
+</hibernate-mapping>
+	

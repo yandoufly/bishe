@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wjw.laboratory.entity.Appointment" table="appointment">
+		<id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        
+        <property name="courseId" column="courseId"/>
+        <property name="courseName" column="courseName"/>
+        <property name="teacher" column="teacher"/>
+        <property name="classroomId" column="classroomId"/>
+        <property name="personcount" column="personcount"/>
+        <property name="startWeek" column="startWeek"/>
+        <property name="endWeek" column="endWeek"/>
+        <property name="whatday" column="whatday"/>
+        <property name="part" column="part"/>
+        <property name="state" column="state"/>
+	</class>
+</hibernate-mapping>
+	
